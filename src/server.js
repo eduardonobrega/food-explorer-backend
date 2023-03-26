@@ -2,7 +2,6 @@ require('express-async-errors');
 const AppError = require('./utils/AppError');
 
 const express = require('express');
-
 const router = require('./routes');
 
 const app = express();
