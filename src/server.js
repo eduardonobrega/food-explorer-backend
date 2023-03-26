@@ -1,8 +1,29 @@
+require('express-async-errors');
+const AppError = require('./utils/AppError');
+
 const express = require('express');
 
-const app = express();
+const router = require('./routes');
 
-app.get('/', (request, response) => response.send(`<h1>Welcome API FoodExplorer</h1>`))
+const app = express();
+app.use(express.json());
+app.use(router);
+
+app.use((error, request, response, next) => {
+  if (error instanceof AppError) {
+    return response.status(error.statusCode).json({
+      status: 'error',
+      message: error.message,
+    });
+  }
+
+  console.error(error);
+
+  return response.status(500).json({
+    status: 'error',
+    message: 'Internal server error',
+  });
+});
 
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));
