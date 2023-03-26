@@ -10,7 +10,8 @@
   "author": "Eduardo Nóbrega",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
