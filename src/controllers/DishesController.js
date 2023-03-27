@@ -87,6 +87,22 @@ class Dishes {
     return response.json();
   }
 
+  async show(request, response) {
+    const { id } = request.params;
+
+    const dish = await knex('dishes').where({ id }).first();
+
+    if (!dish) {
+      throw new AppError('Prato não encontrado');
+    }
+
+    const dishIngredients = await knex('ingredients')
+      .where({ dish_id: id })
+      .orderBy('name');
+
+    return response.json({ ...dish, dishIngredients });
+  }
+
   async delete(request, response) {
     const { id } = request.params;
 
