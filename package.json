@@ -11,6 +11,7 @@
   "author": "Eduardo Nóbrega",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "knex": "^2.4.2",
