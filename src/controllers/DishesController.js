@@ -91,6 +91,7 @@ class Dishes {
     const { id } = request.params;
 
     await knex('dishes').delete().where({ id });
+    return response.json();
   }
 }
 
