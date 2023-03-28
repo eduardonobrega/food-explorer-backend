@@ -20,6 +20,7 @@ class RequestsController {
       .first();
 
     if (existingRequest) {
+      // refatorar (esse método só deve fazer a inserção)
       const newQuantity = Number(quantity) + existingRequest.quantity;
       const updatedRequest = { ...existingRequest, quantity: newQuantity };
 
@@ -30,6 +31,7 @@ class RequestsController {
 
     return response.json();
   }
+
   async index(request, response) {
     const { user_id } = request.params;
 
