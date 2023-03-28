@@ -28,9 +28,18 @@ class PurchasesController {
     await knex('purchases').insert({ user_id, details: details.slice(0, -2) });
     await knex('requests').where({ user_id }).delete();
 
+    return response.status(201).json();
+  }
+  async update(request, response) {
+    const { status } = request.body;
+    const { id } = request.params;
+
+    const updated_at = knex.fn.now();
+
+    await knex('purchases').update({ status, updated_at }).where({ id });
+
     return response.json();
   }
-  async update(request, response) {}
 }
 
 module.exports = PurchasesController;

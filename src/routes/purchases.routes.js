@@ -6,5 +6,6 @@ const purchasesController = new PurchasesController();
 const purchasesRoutes = Router();
 
 purchasesRoutes.post('/', purchasesController.create);
+purchasesRoutes.patch('/:id', purchasesController.update);
 
 module.exports = purchasesRoutes;

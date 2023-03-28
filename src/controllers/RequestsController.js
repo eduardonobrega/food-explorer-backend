@@ -29,7 +29,7 @@ class RequestsController {
       await knex('requests').insert({ user_id, dish_id, quantity });
     }
 
-    return response.json();
+    return response.status(201).json();
   }
 
   async index(request, response) {

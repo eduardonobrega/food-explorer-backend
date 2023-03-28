@@ -30,7 +30,7 @@ class FavoritesController {
         console.error(err);
       });
 
-    return response.json();
+    return response.status(201).json();
   }
 
   async index(request, response) {
