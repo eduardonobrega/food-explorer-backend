@@ -2,10 +2,12 @@ require('express-async-errors');
 const AppError = require('./utils/AppError');
 const uploadConfig = require('./configs/upload');
 
+const cors = require('cors');
 const express = require('express');
 const router = require('./routes');
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(router);
 
