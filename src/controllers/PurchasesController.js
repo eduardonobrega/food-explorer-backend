@@ -3,7 +3,7 @@ const knex = require('../database/knex');
 
 class PurchasesController {
   async create(request, response) {
-    const { user_id } = request.body;
+    const user_id = request.user.id;
 
     const userRequests = await knex('requests')
       .select([
