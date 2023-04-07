@@ -20,7 +20,7 @@ dishesRoutes.get('/:id', dishesController.show);
 dishesRoutes.get('/', dishesController.index);
 dishesRoutes.patch(
   '/photo/:id',
-  upload.single('avatar'),
+  upload.single('photo'),
   dishPhotoController.update
 );
 
