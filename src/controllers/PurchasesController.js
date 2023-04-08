@@ -40,6 +40,23 @@ class PurchasesController {
 
     return response.json();
   }
+
+  async index(request, response) {
+    const user_id = request.user.id;
+
+    const user = await knex('users').where({ id: user_id }).first();
+    const isAdmin = user.isAdmin === 1;
+
+    let purchases;
+
+    if (isAdmin) {
+      purchases = await knex('purchases');
+    } else {
+      purchases = await knex('purchases').where({ user_id });
+    }
+
+    return response.json(purchases);
+  }
 }
 
 module.exports = PurchasesController;
