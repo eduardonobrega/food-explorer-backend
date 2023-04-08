@@ -16,7 +16,7 @@ class FavoritesController {
       throw new AppError('Prato não encontrado');
     }
 
-    await knex.raw(
+    const id = await knex.raw(
       `
         INSERT OR IGNORE INTO favorites (user_id, dish_id)
         VALUES (?, ?)
@@ -24,14 +24,13 @@ class FavoritesController {
       [user_id, dish_id]
     );
 
-    return response.status(201).json();
+    return response.status(201).json({id});
   }
 
   async index(request, response) {
     const user_id = request.user.id;
-
     const dishFavorites = await knex('favorites')
-      .select(['dishes.name', 'dishes.photo', 'favorites.id'])
+      .select(['dishes.id as dish_id', 'dishes.name', 'dishes.photo', 'favorites.id'])
       .innerJoin('dishes', 'dishes.id', 'favorites.dish_id')
       .where('favorites.user_id', user_id);
 
