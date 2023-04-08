@@ -6,7 +6,6 @@ class RequestsController {
     const { dish_id, quantity } = request.body;
     const user_id = request.user.id;
 
-
     const user = await knex('users').where({ id: user_id }).first();
     const dish = await knex('dishes').where({ id: dish_id }).first();
 
@@ -35,13 +34,14 @@ class RequestsController {
   }
 
   async index(request, response) {
-    const user_id  = request.user.id;
+    const user_id = request.user.id;
 
     const userRequests = await knex('requests')
       .select([
         'requests.id',
         'requests.quantity',
-        'dishes.name',
+        'dishes.id as dish_id',
+        'dishes.name as dish_name',
         'dishes.price',
         'dishes.photo',
       ])
@@ -53,6 +53,14 @@ class RequestsController {
     });
 
     return response.json(requestsWithSubTotal);
+  }
+
+  async delete(request, response) {
+    const { id } = request.params;
+
+    await knex('requests').where({ id }).delete();
+
+    return response.json();
   }
 }
 

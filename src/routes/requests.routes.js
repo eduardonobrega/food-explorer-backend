@@ -9,5 +9,6 @@ requestsRoutes.use(ensureAuthenticated);
 
 requestsRoutes.post('/', requestsController.create);
 requestsRoutes.get('/', requestsController.index);
+requestsRoutes.delete('/:id', requestsController.delete);
 
 module.exports = requestsRoutes;
