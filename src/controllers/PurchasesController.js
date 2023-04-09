@@ -21,7 +21,7 @@ class PurchasesController {
     });
 
     const details = requestsWithSubTotal.reduce(
-      (acc, item) => acc + `${item.quantity}x ${item.name}, `,
+      (acc, item) => acc + `${item.quantity} x ${item.name}, `,
       ''
     );
 

@@ -21,10 +21,7 @@ class RequestsController {
       .first();
 
     if (existingRequest) {
-      // refatorar (esse método só deve fazer a inserção)
-      const newQuantity = Number(quantity) + existingRequest.quantity;
-      const updatedRequest = { ...existingRequest, quantity: newQuantity };
-
+      const updatedRequest = { ...existingRequest, quantity };
       await knex('requests').update(updatedRequest).where({ user_id, dish_id });
     } else {
       await knex('requests').insert({ user_id, dish_id, quantity });
