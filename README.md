@@ -138,21 +138,21 @@ para criar um usurário administrador, basta fazer uma requisição em /users/, 
 
 
 ## Foi utilizado:
-- Node.js
-- Express
-- SQLite
-- Knex.js
-- Autenticação;
-- JWT;
-- Middlewares;
-- Upload de imagens;
-- API Restful;
-- Cors;
-- PM2;
-- Deploy e utilização do render;
-- Variáveis de ambiente;
-- Testes automatizados;
-- Jest;
+- `Node.js`
+- `Express`
+- `SQLite`
+- `Knex.js`
+- `Autenticação`
+- `JWT`
+- `Middlewares`
+- `Upload de imagens`
+- `API Restful`
+- `Cors`
+- `PM2`
+- `Deploy e utilização do render`
+- `Variáveis de ambiente`
+- `Testes automatizados`
+- `Jest`
 
 ---
 ## 🎨 Veja o [Fron-end](https://github.com/eduardonobrega/food-explorer-frontend) 
