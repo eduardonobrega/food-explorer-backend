@@ -25,20 +25,21 @@ class PurchasesController {
       ''
     );
 
-    await knex('purchases').insert({ user_id, details: details.slice(0, -2) });
+    const updatedAt = new Date().toISOString()
+    const id = await knex('purchases').insert({ user_id, updatedAt, details: details.slice(0, -2) });
     await knex('requests').where({ user_id }).delete();
-
-    return response.status(201).json();
+    return response.status(201).json({ details: details.slice(0, -2), user_id, updatedAt , id: id[0], status: 'pending'});
   }
+
   async update(request, response) {
     const { status } = request.body;
     const { id } = request.params;
 
-    const updated_at = knex.fn.now();
+    const updatedAt = new Date().toISOString()
 
-    await knex('purchases').update({ status, updated_at }).where({ id });
+    await knex('purchases').update({ status, updatedAt }).where({ id });
 
-    return response.json();
+    return response.json(updatedAt);
   }
 
   async index(request, response) {
@@ -54,7 +55,7 @@ class PurchasesController {
     } else {
       purchases = await knex('purchases').where({ user_id });
     }
-
+    
     return response.json(purchases);
   }
 }

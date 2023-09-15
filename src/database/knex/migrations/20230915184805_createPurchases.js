@@ -12,8 +12,7 @@ exports.up = (knex) =>
     table.text('status').defaultTo('pending');
     table.text('details').notNullable();
 
-    table.timestamp('created_at').defaultTo(knex.fn.now());
-    table.timestamp('updated_at').defaultTo(knex.fn.now());
+    table.text('updatedAt').notNullable();
   });
 
 exports.down = (knex) => knex.schema.dropTable('purchases');
